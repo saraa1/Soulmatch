@@ -1,0 +1,122 @@
+﻿@model SoulMatch.Models.UserDb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserDb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cast)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cast)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Religion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Religion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNIC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CNIC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Profession)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Profession)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

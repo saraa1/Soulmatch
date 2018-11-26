@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoulMatchModelStoreContainer" CdmEntityContainer="SoulMatchEntities">
+    <EntitySetMapping Name="BrokerDbs">
+      <EntityTypeMapping TypeName="SoulMatchModel.BrokerDb">
+        <MappingFragment StoreEntitySet="BrokerDb">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegisteredUserDbs">
+      <EntityTypeMapping TypeName="SoulMatchModel.RegisteredUserDb">
+        <MappingFragment StoreEntitySet="RegisteredUserDb">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Account_No" ColumnName="Account_No" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Cast" ColumnName="Cast" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fulname" ColumnName="Fulname" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDbs">
+      <EntityTypeMapping TypeName="SoulMatchModel.UserDb">
+        <MappingFragment StoreEntitySet="UserDb">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Account_No" ColumnName="Account_No" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Cast" ColumnName="Cast" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fulname" ColumnName="Fulname" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

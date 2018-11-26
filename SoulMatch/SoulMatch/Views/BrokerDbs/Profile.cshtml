@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SoulMatch.Models.Gridtables>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "pro";
+}
+
+<h2>REGISTRATION REQUESTS</h2>
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/scripts/gridmvc.min.js")"></script>
+
+<div class="code-cut">
+    @Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add(c => c.Username).Titled("UserName");
+    Columns.Add(c => c.Address).Titled("Address");
+    Columns.Add(c => c.Age).Titled("Age");
+    Columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o =>( Html.ActionLink(" Details", "Details", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()) + Html.ActionLink("Allow", "Allow", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString() + Html.ActionLink("Delete", "Delete", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString());
+
+
+
+}).WithPaging(10).Sortable(true)
+
+
+
+</div>
