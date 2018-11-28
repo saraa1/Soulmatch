@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="brokerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Table_1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="username" Type="nchar" MaxLength="10" />
+    <Property Name="password" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'broker.dbo.Table_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Table_2">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Image" Type="nchar" MaxLength="50" />
+    <Property Name="Username" Type="nchar" MaxLength="50" />
+    <Property Name="Password" Type="nchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="CNIC" Type="int" />
+    <Property Name="Address" Type="nchar" MaxLength="50" />
+    <Property Name="Contact no" Type="int" />
+    <Property Name="Email" Type="nchar" MaxLength="50" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="Gender" Type="nchar" MaxLength="50" />
+    <Property Name="Religion" Type="text" />
+    <Property Name="Caste" Type="text" />
+    <Property Name="Profession" Type="text" />
+    <Property Name="Account no" Type="int" />
+  </EntityType>
+  <EntityContainer Name="brokerModelStoreContainer">
+    <EntitySet Name="Table_1" EntityType="Self.Table_1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table_2" EntityType="Self.Table_2" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Table_2].[UserID] AS [UserID], 
+    [Table_2].[Image] AS [Image], 
+    [Table_2].[Username] AS [Username], 
+    [Table_2].[Password] AS [Password], 
+    [Table_2].[Age] AS [Age], 
+    [Table_2].[CNIC] AS [CNIC], 
+    [Table_2].[Address] AS [Address], 
+    [Table_2].[Contact no] AS [Contact no], 
+    [Table_2].[Email] AS [Email], 
+    [Table_2].[Salary] AS [Salary], 
+    [Table_2].[Gender] AS [Gender], 
+    [Table_2].[Religion] AS [Religion], 
+    [Table_2].[Caste] AS [Caste], 
+    [Table_2].[Profession] AS [Profession], 
+    [Table_2].[Account no] AS [Account no]
+    FROM [dbo].[Table_2] AS [Table_2]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
