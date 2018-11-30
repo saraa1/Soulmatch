@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Soul.Models.registered_users>
+@{
+                /**/
+
+                ViewBag.Title = "Searchuser";
+}
+<center>
+    <h2>Search Users</h2>
+</center>
+@using (Html.BeginForm("Searchuser", "User", FormMethod.Get))
+{
+    <div class="container">
+        <b>Search By:</b>
+        <select id="Search By">
+
+            <option value="Cast">Cast </option>
+            <option value="Religion">Religion</option>
+            <option value="Profession">Profession</option>
+        </select><br /><br />
+
+        @Html.TextBox("searching")
+        <input type="submit" value="submit" />
+
+    </div>
+    <br /><br />
+
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Fullname
+            </th>
+            <th>Username</th>
+            <th>Age</th>
+            <th>
+                Adress
+            </th>
+            <th>Salary</th>
+            <th>Religion</th>
+            <th>Cast</th>
+            <th>Profession</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Fullname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Username)</td>
+                <td>@Html.DisplayFor(modelItem => item.Age)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Adress)</td>
+                <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                <td>@Html.DisplayFor(modelItem => item.Religion)</td>
+                
+                <td>@Html.DisplayFor(modelItem => item.Cast)</td>
+                <td>@Html.DisplayFor(modelItem => item.Profession)</td>
+
+
+            </tr>
+        }
+    </table>
+
+
+}

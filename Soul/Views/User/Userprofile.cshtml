@@ -1,0 +1,22 @@
+﻿@model Soul.Models.user
+@{
+    ViewBag.Title = "UserProfile";
+}
+<h2>User Profile</h2>
+<center>
+
+
+    @if (Session["email"] != null)
+    {
+        <img src="@Html.ViewData["Img"]" height="200" width="150" />
+
+        <h2>Welcome <br />@Session["email"].ToString()</h2>
+
+
+    }
+</center>
+
+<br />
+<br />
+
+<a href="http://localhost:50741/User/Searchuser">Search Users</a>
