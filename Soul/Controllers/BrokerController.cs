@@ -140,7 +140,7 @@ namespace Soul.Controllers
             }
             return RedirectToAction("request");
         }
-        /*  
+        
           [HttpGet]
           public ActionResult Allow(int? id)
           {
@@ -188,9 +188,9 @@ namespace Soul.Controllers
 
               db.registered_users.Add(rguser);
               db.SaveChanges();
-              return View();
+              return RedirectToAction("requests");
 
-      }*/
+      }
 
         public ActionResult Create()
         {
