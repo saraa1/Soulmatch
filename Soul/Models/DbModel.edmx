@@ -5,18 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="mydatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="broker">
+        <EntityType Name="brokers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="CNIC" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contact No" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="BrokerID" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="CNIC" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact_No" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="BrokerID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="registered_users">
           <Key>
@@ -24,21 +24,30 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="varchar(max)" />
-          <Property Name="Fullname" Type="varchar" MaxLength="150" />
-          <Property Name="Username" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="CNIC" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Contact no" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CNIC" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Adress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact_no" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Salary" Type="int" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Religion" Type="text" Nullable="false" />
-          <Property Name="Cast" Type="text" Nullable="false" />
-          <Property Name="Profession" Type="text" Nullable="false" />
-          <Property Name="Account no" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="City" Type="text" Nullable="false" />
+          <Property Name="Religion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Cast" Type="varchar(max)" Nullable="false" />
+          <Property Name="Profession" Type="varchar(max)" Nullable="false" />
+          <Property Name="Account_no" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="City" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="requests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="receiver" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="bit" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -46,25 +55,26 @@
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Image" Type="varchar(max)" />
-          <Property Name="Fullname" Type="varchar" MaxLength="150" />
-          <Property Name="Username" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="100" />
+          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="CNIC" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Contact no" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CNIC" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Adress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact_no" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Salary" Type="int" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Religion" Type="text" Nullable="false" />
-          <Property Name="Cast" Type="text" Nullable="false" />
-          <Property Name="Profession" Type="text" Nullable="false" />
-          <Property Name="Account no" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="City" Type="text" Nullable="false" />
+          <Property Name="Religion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Cast" Type="varchar(max)" Nullable="false" />
+          <Property Name="Profession" Type="varchar(max)" Nullable="false" />
+          <Property Name="Account_no" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="City" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="mydatabaseModelStoreContainer">
-          <EntitySet Name="broker" EntityType="Self.broker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="brokers" EntityType="Self.brokers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="registered_users" EntityType="Self.registered_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="requests" EntityType="Self.requests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
@@ -76,14 +86,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Contact_No" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="BrokerID" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Contact_No" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BrokerID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="registered_users">
           <Key>
@@ -91,21 +101,30 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Adress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Contact_no" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNIC" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contact_no" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Salary" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Religion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cast" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Profession" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Account_no" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Account_no" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="receiver" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Boolean" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -113,25 +132,26 @@
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Adress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Contact_no" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CNIC" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Contact_no" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Salary" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Religion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Cast" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Profession" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Account_no" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Account_no" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityContainer Name="DbModels" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="brokers" EntityType="Self.broker" />
           <EntitySet Name="registered_users" EntityType="Self.registered_users" />
+          <EntitySet Name="requests" EntityType="Self.request" />
           <EntitySet Name="users" EntityType="Self.user" />
         </EntityContainer>
       </Schema>
@@ -142,15 +162,15 @@
         <EntityContainerMapping StorageEntityContainer="mydatabaseModelStoreContainer" CdmEntityContainer="DbModels">
           <EntitySetMapping Name="brokers">
             <EntityTypeMapping TypeName="mydatabaseModel.broker">
-              <MappingFragment StoreEntitySet="broker">
+              <MappingFragment StoreEntitySet="brokers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Contact_No" ColumnName="Contact No" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -165,15 +185,25 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Contact_no" ColumnName="Contact no" />
+                <ScalarProperty Name="Contact_no" ColumnName="Contact_no" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Religion" ColumnName="Religion" />
                 <ScalarProperty Name="Cast" ColumnName="Cast" />
                 <ScalarProperty Name="Profession" ColumnName="Profession" />
-                <ScalarProperty Name="Account_no" ColumnName="Account no" />
+                <ScalarProperty Name="Account_no" ColumnName="Account_no" />
                 <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requests">
+            <EntityTypeMapping TypeName="mydatabaseModel.request">
+              <MappingFragment StoreEntitySet="requests">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="sender" ColumnName="sender" />
+                <ScalarProperty Name="receiver" ColumnName="receiver" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -188,14 +218,14 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Contact_no" ColumnName="Contact no" />
+                <ScalarProperty Name="Contact_no" ColumnName="Contact_no" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Religion" ColumnName="Religion" />
                 <ScalarProperty Name="Cast" ColumnName="Cast" />
                 <ScalarProperty Name="Profession" ColumnName="Profession" />
-                <ScalarProperty Name="Account_no" ColumnName="Account no" />
+                <ScalarProperty Name="Account_no" ColumnName="Account_no" />
                 <ScalarProperty Name="City" ColumnName="City" />
               </MappingFragment>
             </EntityTypeMapping>

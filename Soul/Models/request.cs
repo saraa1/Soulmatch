@@ -12,15 +12,11 @@ namespace Soul.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class broker
+    public partial class request
     {
-        public int Id { get; set; }
-        public string Code { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string City { get; set; }
-        public string CNIC { get; set; }
-        public string Contact_No { get; set; }
-        public int BrokerID { get; set; }
+        public int ID { get; set; }
+        public string sender { get; set; }
+        public string receiver { get; set; }
+        public Nullable<bool> status { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace Soul.Models
     
         public virtual DbSet<broker> brokers { get; set; }
         public virtual DbSet<registered_users> registered_users { get; set; }
+        public virtual DbSet<request> requests { get; set; }
         public virtual DbSet<user> users { get; set; }
     }
 }

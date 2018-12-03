@@ -1,12 +1,29 @@
-﻿@model IEnumerable<Soul.Models.registered_users>
-@{
-                /**/
+﻿@model IEnumerable<Soul.Models.gridtable>
 
-                ViewBag.Title = "Searchuser";
+
+@if (Session["email"] != null)
+{
+
+    <h2>Welcome <br />@Session["email"].ToString()</h2>
+
+
+}
+@using GridMvc.Html
+
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Searchuser";
 }
 <center>
     <h2>Search Users</h2>
 </center>
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/scripts/gridmvc.min.js")"></script>
 @using (Html.BeginForm("Searchuser", "User", FormMethod.Get))
 {
     <div class="container">
@@ -24,39 +41,30 @@
     </div>
     <br /><br />
 
-    <table class="table table-bordered">
-        <tr>
-            <th>
-                Fullname
-            </th>
-            <th>Username</th>
-            <th>Age</th>
-            <th>
-                Adress
-            </th>
-            <th>Salary</th>
-            <th>Religion</th>
-            <th>Cast</th>
-            <th>Profession</th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.Fullname)</td>
-                <td>@Html.DisplayFor(modelItem => item.Username)</td>
-                <td>@Html.DisplayFor(modelItem => item.Age)</td>
-
-                <td>@Html.DisplayFor(modelItem => item.Adress)</td>
-                <td>@Html.DisplayFor(modelItem => item.Salary)</td>
-                <td>@Html.DisplayFor(modelItem => item.Religion)</td>
-                
-                <td>@Html.DisplayFor(modelItem => item.Cast)</td>
-                <td>@Html.DisplayFor(modelItem => item.Profession)</td>
+    <div class="code-cut">
+        @Html.Grid(Model).Columns(Columns =>
+   {
+       Columns.Add(s => s.Fullname).Titled("Fullname");
+       Columns.Add(s => s.Email).Titled("Email");
+       Columns.Add(s => s.Age).Titled("Age");
+       Columns.Add(s => s.Religion).Titled("Religion");
+       Columns.Add(s => s.Cast).Titled("Cast");
+       Columns.Add(s => s.Profession).Titled("Profession");
+       Columns.Add(s => s.City).Titled("City");
+       Columns.Add()
+       .Encoded(false)
+       .Sanitized(false)
+       .SetWidth(50)
+       .RenderValueAs(o => (Html.ActionLink(" SendRequest", "SendRequest", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()));
 
 
-            </tr>
-        }
-    </table>
 
+
+
+   }).WithPaging(10).Sortable(true)
+
+
+
+    </div>
 
 }

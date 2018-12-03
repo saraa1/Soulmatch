@@ -9,12 +9,12 @@
 
 namespace Soul.Models
 {
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
-
 
     public partial class user
     {
@@ -42,7 +42,6 @@ namespace Soul.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field is required")]
         public int? Age { get; set; }
-
         [DisplayName("CNIC")]
 
 
@@ -72,7 +71,7 @@ namespace Soul.Models
         [Required]
         public string Profession { get; set; }
         [Required]
-        [DisplayName("Account no")]
+        [DisplayName("Account No")]
         public string Account_no { get; set; }
         [Required]
         public string City { get; set; }
