@@ -12,7 +12,7 @@ using Soul.Models;
 
 namespace Soul.Controllers
 {
-    public class brokerController : Controller
+    public class BrokerController : Controller
     {
         DbModels db = new DbModels();
         // GET: broker
@@ -43,6 +43,7 @@ namespace Soul.Controllers
             }
 
         }
+
         public ActionResult Userprofile()
         {
             user usermodel = new user();
@@ -74,11 +75,7 @@ namespace Soul.Controllers
             return View(result);
 
         }
-
-
-
-
-
+        
 
         public ActionResult Details(int? id)
         {
@@ -143,58 +140,76 @@ namespace Soul.Controllers
             }
             return RedirectToAction("request");
         }
-      /*  
-        [HttpGet]
-        public ActionResult Allow(int? id)
-        {
+        
+          [HttpGet]
+          public ActionResult Allow(int? id)
+          {
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            user table_2 = db.users.Find(id);
-            if (table_2 == null)
-            {
-                return HttpNotFound();
-            }
-            return View(table_2);
+              if (id == null)
+              {
+                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+              }
+              user table_2 = db.users.Find(id);
+              if (table_2 == null)
+              {
+                  return HttpNotFound();
+              }
+              return View(table_2);
+          }
+
+          [HttpPost]
+
+          [ActionName("Allow")]
+          public ActionResult Allow(int id)
+          {
+
+              user table_2 = db.users.Find(id);
+
+              registered_users rguser = new registered_users
+              {
+                  UserID=table_2.UserID,
+                  Fullname=table_2.Fullname,
+                  Image=table_2.Image,
+                  Account_no=table_2.Account_no,
+                  Adress=table_2.Adress,
+                  Age=table_2.Age,
+                  Cast=table_2.Cast,
+                  City=table_2.City,
+                  CNIC=table_2.CNIC,
+                  Contact_no=table_2.Contact_no,
+                  Email=table_2.Email,
+                  Gender=table_2.Gender,
+                  Password=table_2.Password,
+                  Profession=table_2.Profession,
+                  Religion=table_2.Religion,
+                  Salary=table_2.Salary,
+                  Username=table_2.Username
+              };
+
+              db.registered_users.Add(rguser);
+              db.SaveChanges();
+              return RedirectToAction("requests");
+
+      }
+
+        public ActionResult Create()
+        {
+            return View();
         }
 
         [HttpPost]
-
-        [ActionName("Allow")]
-        public ActionResult Allow(int id)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Name,CNIC,City,Contact_No,Email,BrokerID,Code")] broker broker)
         {
-
-            user table_2 = db.users.Find(id);
-
-            registered_users rguser = new registered_users
+            if (ModelState.IsValid)
             {
-                UserID=table_2.UserID,
-                Fullname=table_2.Fullname,
-                Image=table_2.Image,
-                Account_no=table_2.Account_no,
-                Adress=table_2.Adress,
-                Age=table_2.Age,
-                Cast=table_2.Cast,
-                City=table_2.City,
-                CNIC=table_2.CNIC,
-                Contact_no=table_2.Contact_no,
-                Email=table_2.Email,
-                Gender=table_2.Gender,
-                Password=table_2.Password,
-                Profession=table_2.Profession,
-                Religion=table_2.Religion,
-                Salary=table_2.Salary,
-                Username=table_2.Username
-            };
+                db.brokers.Add(broker);
+                db.SaveChanges();
+                return RedirectToAction("Login");
+            }
 
-            db.registered_users.Add(rguser);
-            db.SaveChanges();
-            return View();
-
-    }*/
-    
+            return View(broker);
+        }
 
     }
 }

@@ -1,0 +1,9 @@
+﻿@model Soul.Models.AdminViewModel
+
+@{
+    ViewBag.Title = "Main";
+}
+
+<h2>WELCOME!</h2>
+
+@Html.ActionLink("Registeration of Broker", "Create", "Broker", new {} , "Id,Name,CNIC,City,Contact_No,Email,BrokerID,Code")
