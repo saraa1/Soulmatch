@@ -341,5 +341,93 @@ namespace Soul.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult getnotified()
+        {
+
+            List<registered_users> k = new List<registered_users>();
+            List<string> mysenders = new List<string>();
+            var listi = db.requests;
+
+
+
+            string displayimg = Session["email"].ToString();
+            string CS = "data source=DESKTOP-FA5LU48; database = mydatabase; integrated security=True";
+            SqlConnection con = new SqlConnection(CS);
+            SqlCommand cmd = new SqlCommand("SELECT username FROM registered_users WHERE Email='" + displayimg + "'", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("Email", Session["email"].ToString());
+            SqlDataReader sdr = cmd.ExecuteReader();
+            request r = new request();
+            if (sdr.Read())
+            {
+                r.receiver = sdr["Username"].ToString();
+            }
+
+
+
+
+
+            var user = from s in db.requests
+                       select s;
+
+            if (!String.IsNullOrEmpty(r.receiver))
+            {
+
+
+                user = user.Where(s => s.receiver.Contains(r.receiver));
+            }
+
+
+            /*  var result = (from c in sendders select new  gridtable
+              {
+                  UserID = c.UserID,
+                  Image = c.Image,
+                  Username = c.Username,
+                  Password = c.Password,
+                  Age = c.Age,
+                  CNIC = c.CNIC,
+                  Adress = c.Adress,
+                  Contact_no = c.Contact_no,
+                  Email = c.Email,
+                  Salary = c.Salary,
+                  Gender = c.Gender,
+                  Religion = c.Religion,
+                  Cast = c.Cast,
+                  Profession = c.Profession,
+                  Account_no = c.Account_no
+
+              }).ToList();
+              return View(result);*/
+            return View(user.ToList());
+
+        }
+
+
+
+        public ActionResult dDetails(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            registered_users table_2 = db.registered_users.Find(id);
+            if (table_2 == null)
+            {
+                return HttpNotFound();
+            }
+            return View(table_2);
+        }
+
+        public ActionResult dDelete(int? id)
+        {
+            DbModels db = new DbModels();
+            var usr = db.requests.Where(x => x.ID == id).First();
+            db.Entry(usr).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            return View();
+            //   return Content("yoyoyoyoyo");
+        }
     }
 }
