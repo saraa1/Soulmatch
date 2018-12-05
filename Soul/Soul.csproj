@@ -175,9 +175,9 @@
       <DependentUpon>DbModel.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DbModel.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DbModel.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -214,8 +214,8 @@
     </Content>
     <Content Include="Models\DbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbModel.cs</LastGenOutput>
       <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -278,6 +278,15 @@
     <Content Include="Views\Admin\Main.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Broker\Create.cshtml" />
+    <Content Include="Views\Broker\ForgotPassword.cshtml" />
+    <Content Include="Views\Broker\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Broker\Edit.cshtml" />
+    <Content Include="Views\Broker\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

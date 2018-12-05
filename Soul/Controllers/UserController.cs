@@ -1,25 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using Soul.Models;
-using System.IO;
-using System.Data.SqlClient;
-using System.Net;
-using System.Security.Principal;
-using System.Data.Entity.Validation;
-using System.Threading.Tasks;
-using System.Threading;
-using Soul.Common;
-
 
 namespace Soul.Controllers
 {
-    
-
     public class UserController : Controller
     {
-        DbModels db = new DbModels();
-        
+        private DbModels db = new DbModels();
+
+        //*****************************************************//
+
         // GET: User
         [HttpGet]
         public ActionResult Register()
@@ -98,14 +97,14 @@ namespace Soul.Controllers
         }
 
 
-        
+
         public ActionResult Userprofile()
 
         {
-           
+
 
             string displayimg = Session["email"].ToString();
-            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
+            string CS = "Data Source=HP\\SQLEXPRESS; Initial Catalog = mydatabase; Integrated Security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + displayimg + "'", con);
             con.Open();
@@ -118,10 +117,10 @@ namespace Soul.Controllers
                 ViewData["Img"] = s;
             }
             con.Close();
-           
-            
 
-            
+
+
+
             user usermodel = new user();
 
 
@@ -173,7 +172,7 @@ namespace Soul.Controllers
         {
             request r = new request();
             string displayimg = Session["email"].ToString();
-            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
+            string CS = "Data Source=HP\\SQLEXPRESS; Initial Catalog = mydatabase; Integrated Security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT Username FROM registered_users WHERE Email='" + displayimg + "'", con);
             con.Open();
@@ -188,8 +187,8 @@ namespace Soul.Controllers
 
 
             }
-            
-            
+
+
 
             if (id == null)
             {
@@ -212,20 +211,135 @@ namespace Soul.Controllers
             return View();
 
         }
-       
 
+        //*****************************************************//
 
+        // GET: User
+        public ActionResult Index()
+        {
+            return View(db.users.ToList());
+        }
+
+        // GET: User/Details/5
+        public ActionResult Details(int? id)
+        {
+            registered_users u = db.registered_users.Find(id);
+            if (u == null)
+            {
+                return HttpNotFound();
+            }
+            string CS = "Data Source=HP\\SQLEXPRESS; Initial Catalog = mydatabase; Integrated Security=True";
+            SqlConnection con = new SqlConnection(CS);
+            SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + u.Email + "'", con);
+            con.Open();
+
+            //cmd.Parameters.AddWithValue("Email", Session["email"].ToString());
+            SqlDataReader sdr = cmd.ExecuteReader();
+            if (sdr.Read())
+            {
+                string s = sdr["Image"].ToString();
+                ViewData["Img"] = s;
+            }
+            con.Close();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user user = db.users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // GET: User/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: User/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "UserID,Image,Fullname,Username,Password,Age,CNIC,Adress,Contact_no,Email,Salary,Gender,Religion,Cast,Profession,Account_no,City")] user user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(user);
+        }
+
+        // GET: User/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user user = db.users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: User/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "UserID,Image,Fullname,Username,Password,Age,CNIC,Adress,Contact_no,Email,Salary,Gender,Religion,Cast,Profession,Account_no,City")] user user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+
+        // GET: User/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user user = db.users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: User/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            user user = db.users.Find(id);
+            db.users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("requests","Broker");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
