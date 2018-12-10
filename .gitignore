@@ -273,3 +273,6 @@ DbModel.cs
 broker.cs
 AdminViewModel.cs
 Web.config
+Soul/Views/Shared/Error.cshtml
+Soul/Views/Shared/Error.cshtml
+Soul/Views/Shared/_GridPager.cshtml

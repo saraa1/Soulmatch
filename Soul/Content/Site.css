@@ -1,12 +1,12 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +21,54 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+
+@media (min-width: 551px) and (max-width: 980px) {
+}
+
+@media (min-width: 220px) and (max-width: 551px) {
+    .testi-info {
+        margin-bottom: 20px;
+    }
+
+    .marb20 {
+        margin-top: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+    }
+
+    .medi-info {
+        border: 0px;
+        border-bottom: 1px solid #fff;
+    }
+
+    .service-info {
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    .caption h3 {
+        font-size: 14px;
+    }
+
+    .caption p {
+        font-size: 12px;
+        padding-bottom: 5px;
+    }
+
+    .caption ul li a i {
+        font-size: 14px;
+    }
+
+    .banner-text h1 {
+        font-size: 24px;
+    }
 }

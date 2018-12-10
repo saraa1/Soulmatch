@@ -10,14 +10,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Soul.Models;
-using System.IO;
-using System.Data.SqlClient;
-using System.Net;
-using System.Data.Entity.Validation;
-using System.Collections.Generic;
 
 
-     
+
+
 namespace Soul.Controllers
 {
     public class UserController : Controller
@@ -229,7 +225,7 @@ namespace Soul.Controllers
 
 
             string displayimg = Session["email"].ToString();
-            string CS = "data source=DESKTOP-UVVRF7B\\SARAMALIK; database = mydatabase; integrated security=True";
+            string CS = "data source=DESKTOP-CS6PHAG\fatima; database = mydatabase; integrated security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT username FROM registered_users WHERE Email='" + displayimg + "'", con);
             con.Open();
@@ -271,10 +267,11 @@ namespace Soul.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             request table_2 = db.requests.Find(id);
 
             registered_users r = db.registered_users.Where(x => x.Username == table_2.sender).FirstOrDefault();
+
             
             if (r == null)
             {
@@ -293,6 +290,7 @@ namespace Soul.Controllers
                 ViewData["Img"] = s;
             }
             con.Close();
+
 
             return View(r);
         }
@@ -317,7 +315,7 @@ namespace Soul.Controllers
 
             try
             {
-               request d = db.requests.Find(id);
+                request d = db.requests.Find(id);
 
                 db.requests.Remove(d);
                 db.SaveChanges();
@@ -460,7 +458,7 @@ namespace Soul.Controllers
             user user = db.users.Find(id);
             db.users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("requests","Broker");
+            return RedirectToAction("requests", "Broker");
         }
         public ActionResult ViewDetails(int? id)
         {
@@ -469,40 +467,7 @@ namespace Soul.Controllers
             {
                 return HttpNotFound();
             }
-            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
-            SqlConnection con = new SqlConnection(CS);
-            SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + u.Email + "'", con);
-            con.Open();
 
-            //cmd.Parameters.AddWithValue("Email", Session["email"].ToString());
-            SqlDataReader sdr = cmd.ExecuteReader();
-            if (sdr.Read())
-            {
-                string s = sdr["Image"].ToString();
-                ViewData["Img"] = s;
-            }
-            con.Close();
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            registered_users user = db.registered_users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-       
     }
 }
