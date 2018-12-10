@@ -264,8 +264,8 @@ namespace Soul.Controllers
 
         public ActionResult UserDetails(int? id)
         {
-            
 
+          
 
             if (id == null)
             {
@@ -276,7 +276,24 @@ namespace Soul.Controllers
 
             registered_users r = db.registered_users.Where(x => x.Username == table_2.sender).FirstOrDefault();
             
-            
+            if (r == null)
+            {
+                return HttpNotFound();
+            }
+            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
+            SqlConnection con = new SqlConnection(CS);
+            SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + r.Email + "'", con);
+            con.Open();
+
+            //cmd.Parameters.AddWithValue("Email", Session["email"].ToString());
+            SqlDataReader sdr = cmd.ExecuteReader();
+            if (sdr.Read())
+            {
+                string s = sdr["Image"].ToString();
+                ViewData["Img"] = s;
+            }
+            con.Close();
+
             return View(r);
         }
         public ActionResult UserDelete(int? id)
