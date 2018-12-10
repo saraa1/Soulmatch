@@ -22,7 +22,7 @@ namespace Soul.Controllers
             {
                 return RedirectToAction("Main");
             }
-            return View("Login", admin);
+            return View("Login");
         }
 
         public ActionResult Main()
@@ -30,21 +30,5 @@ namespace Soul.Controllers
             return View();
         }
 
-        public ActionResult RegisterBroker(broker broker)
-        {
-            using (DbModels dbModel = new DbModels())
-            {
-                if (dbModel.brokers.Any(x => x.BrokerID == broker.BrokerID))
-                {
-                    ViewBag.DuplicateMessage = "BrokerID already exists";
-                    return View("RegisterBroker", broker);
-                }
-                dbModel.brokers.Add(broker);
-                dbModel.SaveChanges();
-            }
-            ModelState.Clear();
-            ViewBag.SuccessMessage = "Registeration successful";
-            return View("RegisterBroker", new broker());
-        }
     }
 }

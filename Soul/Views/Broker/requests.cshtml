@@ -20,7 +20,7 @@
     .Encoded(false)
     .Sanitized(false)
     .SetWidth(30)
-    .RenderValueAs(o =>( Html.ActionLink(" Details", "Details", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()) + Html.ActionLink("Allow", "Allow", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString() + Html.ActionLink("Delete", "Delete", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString());
+    .RenderValueAs(o =>( Html.ActionLink(" Details", "Details","User", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()) + Html.ActionLink("Allow", "Allow", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString() + Html.ActionLink("Delete", "Delete","User", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString());
 
 
 

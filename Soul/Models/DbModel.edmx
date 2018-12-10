@@ -4,81 +4,80 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mydatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="brokers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Name" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="City" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="CNIC" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contact_No" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="BrokerID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="registered_users">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Image" Type="varchar(max)" />
-          <Property Name="Fullname" Type="varchar" MaxLength="100" />
-          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="CNIC" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Adress" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contact_no" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Salary" Type="int" Nullable="false" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Religion" Type="varchar(max)" Nullable="false" />
-          <Property Name="Cast" Type="varchar(max)" Nullable="false" />
-          <Property Name="Profession" Type="varchar(max)" Nullable="false" />
-          <Property Name="Account_no" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="City" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="requests">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="receiver" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="status" Type="bit" />
-        </EntityType>
-        <EntityType Name="users">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Image" Type="varchar(max)" />
-          <Property Name="Fullname" Type="varchar" MaxLength="100" />
-          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Age" Type="int" Nullable="false" />
-          <Property Name="CNIC" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Adress" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contact_no" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Salary" Type="int" Nullable="false" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Religion" Type="varchar(max)" Nullable="false" />
-          <Property Name="Cast" Type="varchar(max)" Nullable="false" />
-          <Property Name="Profession" Type="varchar(max)" Nullable="false" />
-          <Property Name="Account_no" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="City" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="mydatabaseModelStoreContainer">
-          <EntitySet Name="brokers" EntityType="Self.brokers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="registered_users" EntityType="Self.registered_users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="requests" EntityType="Self.requests" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="mydatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="mydatabaseModelStoreContainer">
+    <EntitySet Name="brokers" EntityType="mydatabaseModel.Store.brokers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="registered_users" EntityType="mydatabaseModel.Store.registered_users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="requests" EntityType="mydatabaseModel.Store.requests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="mydatabaseModel.Store.users" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="brokers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="CNIC" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Contact_No" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="BrokerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="registered_users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="varchar(max)" Nullable="true" />
+    <Property Name="Fullname" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="CNIC" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Adress" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Contact_no" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Religion" Type="varchar(max)" Nullable="false" />
+    <Property Name="Cast" Type="varchar(max)" Nullable="false" />
+    <Property Name="Profession" Type="varchar(max)" Nullable="false" />
+    <Property Name="Account_no" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="City" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="requests">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sender" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="receiver" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="status" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="varchar(max)" Nullable="true" />
+    <Property Name="Fullname" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="CNIC" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Adress" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Contact_no" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Religion" Type="varchar(max)" Nullable="false" />
+    <Property Name="Cast" Type="varchar(max)" Nullable="false" />
+    <Property Name="Profession" Type="varchar(max)" Nullable="false" />
+    <Property Name="Account_no" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="City" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mydatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -158,81 +157,80 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="mydatabaseModelStoreContainer" CdmEntityContainer="DbModels">
-          <EntitySetMapping Name="brokers">
-            <EntityTypeMapping TypeName="mydatabaseModel.broker">
-              <MappingFragment StoreEntitySet="brokers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
-                <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
-                <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="registered_users">
-            <EntityTypeMapping TypeName="mydatabaseModel.registered_users">
-              <MappingFragment StoreEntitySet="registered_users">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Contact_no" ColumnName="Contact_no" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Religion" ColumnName="Religion" />
-                <ScalarProperty Name="Cast" ColumnName="Cast" />
-                <ScalarProperty Name="Profession" ColumnName="Profession" />
-                <ScalarProperty Name="Account_no" ColumnName="Account_no" />
-                <ScalarProperty Name="City" ColumnName="City" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="requests">
-            <EntityTypeMapping TypeName="mydatabaseModel.request">
-              <MappingFragment StoreEntitySet="requests">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="sender" ColumnName="sender" />
-                <ScalarProperty Name="receiver" ColumnName="receiver" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="mydatabaseModel.user">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Contact_no" ColumnName="Contact_no" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Religion" ColumnName="Religion" />
-                <ScalarProperty Name="Cast" ColumnName="Cast" />
-                <ScalarProperty Name="Profession" ColumnName="Profession" />
-                <ScalarProperty Name="Account_no" ColumnName="Account_no" />
-                <ScalarProperty Name="City" ColumnName="City" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mydatabaseModelStoreContainer" CdmEntityContainer="DbModels">
+    <EntitySetMapping Name="brokers">
+      <EntityTypeMapping TypeName="IsTypeOf(mydatabaseModel.broker)">
+        <MappingFragment StoreEntitySet="brokers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Contact_No" ColumnName="Contact_No" />
+          <ScalarProperty Name="BrokerID" ColumnName="BrokerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="registered_users">
+      <EntityTypeMapping TypeName="IsTypeOf(mydatabaseModel.registered_users)">
+        <MappingFragment StoreEntitySet="registered_users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Contact_no" ColumnName="Contact_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Cast" ColumnName="Cast" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="Account_no" ColumnName="Account_no" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requests">
+      <EntityTypeMapping TypeName="IsTypeOf(mydatabaseModel.request)">
+        <MappingFragment StoreEntitySet="requests">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="sender" ColumnName="sender" />
+          <ScalarProperty Name="receiver" ColumnName="receiver" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="IsTypeOf(mydatabaseModel.user)">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Contact_no" ColumnName="Contact_no" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Religion" ColumnName="Religion" />
+          <ScalarProperty Name="Cast" ColumnName="Cast" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="Account_no" ColumnName="Account_no" />
+          <ScalarProperty Name="City" ColumnName="City" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -246,7 +244,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
