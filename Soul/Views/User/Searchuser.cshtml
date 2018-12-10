@@ -45,11 +45,12 @@
 <body>
     <div class="sidenav">
 
-        <a href="http://localhost:57783/User/">User Profile</a>
+        <a href="http://localhost:50741/User/UserProfile">User Profile</a>
         <a href="http://localhost:50741/User/Searchuser">Search Users</a>
         <a href="http://localhost:50741/User/getnotified">Proposal Requests</a>
-        <a href="http://localhost:57783/">Log Out</a>
+        <a href="http://localhost:50741/User/Login">Log Out</a>
     </div>
+
 
     <div class="main">
 
@@ -100,7 +101,7 @@
                .Encoded(false)
                .Sanitized(false)
                .SetWidth(50)
-               .RenderValueAs(o => (Html.ActionLink(" SendRequest", "SendRequest", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()));
+               .RenderValueAs(o => (Html.ActionLink(" SendRequest", "SendRequest", "User", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()) + Html.ActionLink("ViewDetails", "ViewDetails", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString());
 
 
 

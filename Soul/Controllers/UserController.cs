@@ -108,7 +108,7 @@ namespace Soul.Controllers
 
 
             string displayimg = Session["email"].ToString();
-            string CS = "Data Source=HP\\SQLEXPRESS; Initial Catalog = mydatabase; Integrated Security=True";
+            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + displayimg + "'", con);
             con.Open();
@@ -176,7 +176,7 @@ namespace Soul.Controllers
         {
             request r = new request();
             string displayimg = Session["email"].ToString();
-            string CS = "Data Source=HP\\SQLEXPRESS; Initial Catalog = mydatabase; Integrated Security=True";
+            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT Username FROM registered_users WHERE Email='" + displayimg + "'", con);
             con.Open();
@@ -337,7 +337,7 @@ namespace Soul.Controllers
             {
                 return HttpNotFound();
             }
-            string CS = "Data Source=HP\\SQLEXPRESS; Initial Catalog = mydatabase; Integrated Security=True";
+            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + u.Email + "'", con);
             con.Open();
@@ -441,16 +441,13 @@ namespace Soul.Controllers
             db.SaveChanges();
             return RedirectToAction("requests","Broker");
         }
-
-        protected override void Dispose(bool disposing)
+        public ActionResult ViewDetails(int? id)
         {
-            if (disposing)
+            registered_users u = db.registered_users.Find(id);
+            if (u == null)
             {
-                db.Dispose();
+                return HttpNotFound();
             }
-            base.Dispose(disposing);
-        }
 
-      
     }
 }

@@ -296,14 +296,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Broker\Edit.cshtml" />
     <Content Include="Views\Broker\Index.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Broker\login.cshtml" />
-    <Content Include="Views\Broker\Userprofile.cshtml" />
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
