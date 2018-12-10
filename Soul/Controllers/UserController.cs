@@ -13,7 +13,7 @@ using Soul.Models;
 
 
 
-     
+
 namespace Soul.Controllers
 {
     public class UserController : Controller
@@ -260,19 +260,19 @@ namespace Soul.Controllers
 
         public ActionResult UserDetails(int? id)
         {
-            
+
 
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             request table_2 = db.requests.Find(id);
 
             registered_users r = db.registered_users.Where(x => x.Username == table_2.sender).FirstOrDefault();
-            
-            
+
+
             return View(r);
         }
         public ActionResult UserDelete(int? id)
@@ -296,7 +296,7 @@ namespace Soul.Controllers
 
             try
             {
-               request d = db.requests.Find(id);
+                request d = db.requests.Find(id);
 
                 db.requests.Remove(d);
                 db.SaveChanges();
@@ -439,7 +439,7 @@ namespace Soul.Controllers
             user user = db.users.Find(id);
             db.users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("requests","Broker");
+            return RedirectToAction("requests", "Broker");
         }
         public ActionResult ViewDetails(int? id)
         {
@@ -449,5 +449,6 @@ namespace Soul.Controllers
                 return HttpNotFound();
             }
 
+        }
     }
 }
