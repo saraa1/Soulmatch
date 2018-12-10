@@ -67,42 +67,48 @@
     </style>
 </head>
 <body>
-    <div>
+    <h1 style=" text-align:center" class="white" >Welcome to Soul Match</h1>
+    <br />
+    <br /> 
+    <br />
+    <div class="video-section">
+        <video id="video-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
+            <source src="~/abc.webm">
+            video not supported
+        </video>
+    </div>
+    <br /> <br /> <br /> <br /> <br /> <br />
 
-        <div class="video-section">
-            <video id="video-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
-                <source src="~/abc.webm">
-                video not supported
-            </video>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 style="color:white">Login as Admin</h2>
+            <br />
+            <br />
+            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Admin/Login">Login &raquo;</a></p>
         </div>
 
-        <div class="video-overlay">
-
-            <div>
-                <div class="content-section">
-                    <h2 style="font-size:40px ">Finding your Soulmatch</h2>
-                </div>
-            </div>
-        </div><br />
-        <br />
-        <div class="row" >
-            <div class="col-md-4" >
-                <h2>Login as Admin</h2>
-                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Admin/Login">Login &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Login as Broker</h2>
-                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/Login">Login &raquo;</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Login as User</h2>
-                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Login">Login &raquo;</a></p>
-            </div>
+        <div class="col-md-4">
+            <h2 style="color:white">Login as Broker</h2>
+            <br />
+            <br />
+            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/Login">Login &raquo;</a></p>
         </div>
+
+        <div class="col-md-4">
+            <h2 style="color:white">Login as User</h2>
+            <br />
+            <br />
+
+            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Login">Login &raquo;</a></p>
+            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Register">Register &raquo;</a></p>
+            <br /> <br /><br /><br /><br />
+        </div>
+    </div>
 
     </div>
 
-    
+
 
 
 
