@@ -1,70 +1,118 @@
 ﻿@model IEnumerable<Soul.Models.gridtable>
 
 
-@if (Session["email"] != null)
-{
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" media="screen and (max-height: 450px)" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-height: 450px)" />
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
 
-    <h2>Welcome <br />@Session["email"].ToString()</h2>
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
 
+            .sidenav a {
+                padding: 6px 6px 6px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+            }
 
-}
-@using GridMvc.Html
-
-@{
-    /**/
-
-    /**/
-
-    ViewBag.Title = "Searchuser";
-}
-<center>
-    <h2>Search Users</h2>
-</center>
-<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
-<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
-<script src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
-<script src="@Url.Content("~/scripts/gridmvc.min.js")"></script>
-@using (Html.BeginForm("Searchuser", "User", FormMethod.Get))
-{
-    <div class="container">
-        <b>Search By:</b>
-        <select id="Search By">
-
-            <option value="Cast">Cast </option>
-            <option value="Religion">Religion</option>
-            <option value="Profession">Profession</option>
-        </select><br /><br />
-
-        @Html.TextBox("searching")
-        <input type="submit" value="submit" />
-
-    </div>
-    <br /><br />
-
-    <div class="code-cut">
-        @Html.Grid(Model).Columns(Columns =>
-   {
-       Columns.Add(s => s.Fullname).Titled("Fullname");
-       Columns.Add(s => s.Email).Titled("Email");
-       Columns.Add(s => s.Age).Titled("Age");
-       Columns.Add(s => s.Religion).Titled("Religion");
-       Columns.Add(s => s.Cast).Titled("Cast");
-       Columns.Add(s => s.Profession).Titled("Profession");
-       Columns.Add(s => s.City).Titled("City");
-       Columns.Add()
-       .Encoded(false)
-       .Sanitized(false)
-       .SetWidth(50)
-       .RenderValueAs(o => (Html.ActionLink(" SendRequest", "SendRequest", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()));
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
 
 
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+        }
+    </style>
 
 
+</head>
+<body>
+    <div class="sidenav">
 
-   }).WithPaging(10).Sortable(true)
-
-
-
+        <a href="http://localhost:57783/User/">User Profile</a>
+        <a href="http://localhost:50741/User/Searchuser">Search Users</a>
+        <a href="http://localhost:50741/User/getnotified">Proposal Requests</a>
+        <a href="http://localhost:57783/">Log Out</a>
     </div>
 
-}
+    <div class="main">
+
+        @using GridMvc.Html
+
+        @{
+            /**/
+
+            /**/
+
+            ViewBag.Title = "Searchuser";
+        }
+        <center>
+            <h2>Search Users</h2>
+        </center>
+        <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
+        <script src="@Url.Content("~/scripts/gridmvc.min.js")"></script>
+        @using (Html.BeginForm("Searchuser", "User", FormMethod.Get))
+        {
+            <div class="container">
+                <b>Search By:</b>
+                <select id="Search By">
+
+                    <option value="Cast">Cast </option>
+                    <option value="Religion">Religion</option>
+                    <option value="Profession">Profession</option>
+                </select><br /><br />
+
+                @Html.TextBox("searching")
+                <input type="submit" value="submit" />
+
+            </div>
+            <br /><br />
+
+            <div class="code-cut">
+                @Html.Grid(Model).Columns(Columns =>
+           {
+               Columns.Add(s => s.Fullname).Titled("Fullname");
+               Columns.Add(s => s.Email).Titled("Email");
+               Columns.Add(s => s.Age).Titled("Age");
+               Columns.Add(s => s.Religion).Titled("Religion");
+               Columns.Add(s => s.Cast).Titled("Cast");
+               Columns.Add(s => s.Profession).Titled("Profession");
+               Columns.Add(s => s.City).Titled("City");
+               Columns.Add()
+               .Encoded(false)
+               .Sanitized(false)
+               .SetWidth(50)
+               .RenderValueAs(o => (Html.ActionLink(" SendRequest", "SendRequest", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()));
+
+
+
+
+
+           }).WithPaging(10).Sortable(true)
+
+
+
+            </div>
+
+        }
+    </div>
+</body>
+</html>

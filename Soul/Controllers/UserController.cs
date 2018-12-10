@@ -5,21 +5,19 @@ using Soul.Models;
 using System.IO;
 using System.Data.SqlClient;
 using System.Net;
-using System.Security.Principal;
 using System.Data.Entity.Validation;
-using System.Threading.Tasks;
-using System.Threading;
-using Soul.Common;
-
+using System.Collections.Generic;
 
 namespace Soul.Controllers
 {
-    
+
 
     public class UserController : Controller
     {
         DbModels db = new DbModels();
-        
+      
+
+
         // GET: User
         [HttpGet]
         public ActionResult Register()
@@ -160,7 +158,7 @@ namespace Soul.Controllers
             if (!String.IsNullOrEmpty(searching))
             {
 
-                user = user.Where(s => s.Religion.Contains(searching) || s.Profession.Contains(searching) || s.Cast.Contains(searching) || searching == null);
+                user = user.Where(s => s.Religion.Contains(searching) || s.Profession.Contains(searching) || s.Cast.Contains(searching) || s.City.Contains(searching) || searching == null);
             }
 
 
@@ -212,7 +210,111 @@ namespace Soul.Controllers
             return View();
 
         }
-       
+        public ActionResult getnotified()
+        {
+
+            List<registered_users> k = new List<registered_users>();
+            List<string> mysenders = new List<string>();
+            var listi = db.requests;
+
+
+
+            string displayimg = Session["email"].ToString();
+            string CS = "data source=DESKTOP-UVVRF7B\\SARAMALIK; database = mydatabase; integrated security=True";
+            SqlConnection con = new SqlConnection(CS);
+            SqlCommand cmd = new SqlCommand("SELECT username FROM registered_users WHERE Email='" + displayimg + "'", con);
+            con.Open();
+            cmd.Parameters.AddWithValue("Email", Session["email"].ToString());
+            SqlDataReader sdr = cmd.ExecuteReader();
+            request r = new request();
+            if (sdr.Read())
+            {
+                r.receiver = sdr["Username"].ToString();
+            }
+
+
+
+
+
+            var user = from s in db.requests
+                       select s;
+
+            if (!String.IsNullOrEmpty(r.receiver))
+            {
+
+
+                user = user.Where(s => s.receiver.Contains(r.receiver));
+            }
+
+
+            return View(user.ToList());
+
+        }
+
+
+
+        public ActionResult UserDetails(int? id)
+        {
+            
+
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            request table_2 = db.requests.Find(id);
+
+            registered_users r = db.registered_users.Where(x => x.Username == table_2.sender).FirstOrDefault();
+            
+            
+            return View(r);
+        }
+        public ActionResult UserDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            request d = db.requests.Find(id);
+            if (d == null)
+            {
+                return HttpNotFound();
+            }
+            return View(d);
+            //  return Content("yoyoyoyoyo");
+        }
+        [HttpPost]
+        [ActionName("UserDelete")]
+        public ActionResult UserDeleteConfirmed(int id)
+        {
+
+            try
+            {
+               request d = db.requests.Find(id);
+
+                db.requests.Remove(d);
+                db.SaveChanges();
+            }
+
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            return RedirectToAction("getnotified");
+        }
+
+
 
 
     }

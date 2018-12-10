@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+        * {
+            margin-left: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Perpetua Titling MT';
+            margin: 0;
+            
+            background-color:black;
+        }
+
+        .content-section {
+            width: 50%;
+            margin: 0 auto;
+            padding: 15% 0;
+        }
+
+            .content-section h2 {
+                text-transform: uppercase;
+                
+            }
+
+            
+        .video-section {
+            position: relative;
+            width: 100%;
+            max-height: 550px;
+            overflow: hidden;
+        }
+
+        #video-elem {
+            width: 100%;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(255,255,255,0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-overlay:hover {
+            opacity: 1;
+        }
+            .video-overlay p {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+                text-transform: uppercase;
+                font-size: 3em;
+                color: #000;
+                text-align: center;
+            }
+    </style>
+</head>
+<body>
+    <div>
+
+        <div class="video-section">
+            <video id="video-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
+                <source src="~/abc.webm">
+                video not supported
+            </video>
+        </div>
+
+        <div class="video-overlay">
+
+            <div>
+                <div class="content-section">
+                    <h2 style="font-size:40px ">Finding your Soulmatch</h2>
+                </div>
+            </div>
+        </div><br />
+        <br />
+        <div class="row" >
+            <div class="col-md-4" >
+                <h2>Login as Admin</h2>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Admin/Login">Login &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Login as Broker</h2>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/Login">Login &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Login as User</h2>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Login">Login &raquo;</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+
+</body>
+</html>

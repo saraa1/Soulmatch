@@ -9,7 +9,6 @@
 
 namespace Soul.Models
 {
-
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -22,10 +21,12 @@ namespace Soul.Models
         public string Image { get; set; }
         public HttpPostedFileBase Imagefile { get; set; }
         [DisplayName("Full Name")]
+        [StringLength(25)]
         [Required]
         public string Fullname { get; set; }
-        [DisplayName("Username")]
+        [DisplayName("Username ")]
         [Required]
+        [StringLength(10)]
         public string Username { get; set; }
         [DisplayName("Password")]
 
@@ -41,6 +42,7 @@ namespace Soul.Models
         public string ConfirmPassword { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field is required")]
+        [Range(16,65)]
         public int? Age { get; set; }
         [DisplayName("CNIC")]
 

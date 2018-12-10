@@ -1,7 +1,9 @@
-﻿
+﻿@model IEnumerable<Soul.Models.request>
+
 @{
-    ViewBag.Title = "SendRequest";
+    ViewBag.Title = "getnotified";
 }
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -55,8 +57,43 @@
 
     <div class="main">
 
-        <h2>SendRequest</h2>
-        <p>your request is sent successfully</p>
+        <h2>getnotified</h2>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.sender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.receiver)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.receiver)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Pay", "Pay", new { id = item.ID }) |
+                        @Html.ActionLink("UserDetails", "UserDetails", new { id = item.ID }) |
+                        @Html.ActionLink("UserDelete", "UserDelete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
         </div>
-</body>
+    </body>
 </html>
