@@ -467,6 +467,20 @@ namespace Soul.Controllers
             {
                 return HttpNotFound();
             }
+            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
+            SqlConnection con = new SqlConnection(CS);
+            SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + u.Email + "'", con);
+            con.Open();
+
+            //cmd.Parameters.AddWithValue("Email", Session["email"].ToString());
+            SqlDataReader sdr = cmd.ExecuteReader();
+            if (sdr.Read())
+            {
+                string s = sdr["Image"].ToString();
+                ViewData["Img"] = s;
+            }
+            con.Close();
+            return View();
 
         }
     }
