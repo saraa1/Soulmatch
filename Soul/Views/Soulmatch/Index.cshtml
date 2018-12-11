@@ -13,8 +13,7 @@
         body {
             font-family: 'Perpetua Titling MT';
             margin: 0;
-            
-            background-color:black;
+            background-color: black;
         }
 
         .content-section {
@@ -25,10 +24,9 @@
 
             .content-section h2 {
                 text-transform: uppercase;
-                
             }
 
-            
+
         .video-section {
             position: relative;
             width: 100%;
@@ -46,14 +44,15 @@
             right: 0;
             bottom: 0;
             left: 0;
-            background-color: rgba(255,255,255,0.8);
+            background-color: rgba(255,238,248,0.8);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .video-overlay:hover {
-            opacity: 1;
-        }
+            .video-overlay:hover {
+                opacity: 1;
+            }
+
             .video-overlay p {
                 position: absolute;
                 left: 50%;
@@ -67,46 +66,40 @@
     </style>
 </head>
 <body>
-    <h1 style=" text-align:center" class="white" >Welcome to Soul Match</h1>
-    <br />
-    <br /> 
-    <br />
-    <div class="video-section">
-        <video id="video-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
-            <source src="~/abc.webm">
-            video not supported
-        </video>
-    </div>
-    <br /> <br /> <br /> <br /> <br /> <br />
+    
 
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2 style="color:white">Login as Admin</h2>
-            <br />
-            <br />
-            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Admin/Login">Login &raquo;</a></p>
+        <div class="video-section">
+            <video id="video-elem" preload="auto" autoplay="autoplay" loop="loop" muted="muted">
+                <source src="~/abc.webm">
+                video not supported
+            </video>
         </div>
 
-        <div class="col-md-4">
-            <h2 style="color:white">Login as Broker</h2>
-            <br />
-            <br />
-            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/Login">Login &raquo;</a></p>
+        <div class="video-overlay">
+
+            <div>
+                <div class="content-section">
+                    <h2 style="font-size:40px ">Finding your Soulmatch</h2>
+                </div>
+            </div>
+        </div><br />
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Login as Admin</h2>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Admin/Login">Login &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Login as Broker</h2>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/Login">Login &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Login as User</h2>
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Login">Login &raquo;</a></p>
+            </div>
         </div>
 
-        <div class="col-md-4">
-            <h2 style="color:white">Login as User</h2>
-            <br />
-            <br />
-
-            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Login">Login &raquo;</a></p>
-            <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/User/Register">Register &raquo;</a></p>
-            <br /> <br /><br /><br /><br />
-        </div>
-    </div>
-
-    </div>
+  
 
 
 
