@@ -356,7 +356,7 @@ namespace Soul.Controllers
             {
                 return HttpNotFound();
             }
-            string CS = "Data Source=DESKTOP-UVVRF7B\\SARAMALIK; Initial Catalog = mydatabase; Integrated Security=True";
+            string CS = "Data Source=DESKTOP-CS6PHAG; Initial Catalog = mydatabase; Integrated Security=True";
             SqlConnection con = new SqlConnection(CS);
             SqlCommand cmd = new SqlCommand("SELECT Image FROM registered_users WHERE Email='" + u.Email + "'", con);
             con.Open();

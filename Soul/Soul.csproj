@@ -296,7 +296,8 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Broker\Edit.cshtml" />
     <Content Include="Views\Broker\Index.cshtml" />
-
+    <Content Include="Views\Broker\DeleteUser.cshtml" />
+    <Content Include="Views\Broker\DetailsUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

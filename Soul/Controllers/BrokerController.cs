@@ -128,6 +128,70 @@ namespace Soul.Controllers
             return RedirectToAction("requests");
 
         }
+
+        public ActionResult DetailsUser(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user table_2 = db.users.Find(id);
+            if (table_2 == null)
+            {
+                return HttpNotFound();
+            }
+            return View(table_2);
+        }
+
+
+        //get
+        public ActionResult DeleteUser(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user table_2 = db.users.Find(id);
+            if (table_2 == null)
+            {
+                return HttpNotFound();
+            }
+            return View(table_2);
+        }
+
+        // POST: Table_2/Delete/5
+        [HttpPost]
+
+        [ActionName("DeleteUser")]
+        public ActionResult DeleteConfirmed1(int id)
+        {
+
+            try
+            {
+                user table_2 = db.users.Find(id);
+
+                db.users.Remove(table_2);
+                db.SaveChanges();
+            }
+
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            return RedirectToAction("requests");
+        }
         //*********************************************************************//
 
 
