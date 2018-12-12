@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title - Soulmatch</title>
@@ -94,7 +94,7 @@
         }
 
         .navbar-default {
-            background-color:  black;
+            background-color: black;
             padding: 0;
             transition: all 0.3s;
         }
@@ -172,7 +172,7 @@
         }
 
         .bg-color {
-            background-color:  black;
+            background-color: black;
             min-height: 750px;
         }
 
@@ -272,7 +272,7 @@
         }
 
         .top-footer {
-            padding:  0px;
+            padding: 0px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
 
@@ -288,7 +288,7 @@
         td {
             border: 0px solid #ededed;
             border-top: 1px solid rgba(216, 216, 216, 0.5);
-            padding:  0;
+            padding: 0;
         }
 
         .medi-info, .time-info {
@@ -406,7 +406,7 @@
         .form-control {
             height: 40px;
         }
-        
+
 
         .validation {
             color: red;
@@ -415,8 +415,6 @@
             font-weight: 400;
             font-size: 13px;
         }
-
-    
     </style>
 
 </head>
@@ -428,7 +426,7 @@
             <div class="navbar navbar-inverse navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <button class="color-white" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -437,78 +435,85 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li  class="color-white">@Html.ActionLink("Home", "Index", "Soulmatch")</li>
-                            <li  class="color-white">@Html.ActionLink("About", "About", "Soulmatch")</li>
-                            <li  class="color-white">@Html.ActionLink("Contact", "Contact", "Soulmatch")</li>
+                            <li class="color-white">@Html.ActionLink("Home", "Index", "Soulmatch")</li>
+                            <li class="color-white">@Html.ActionLink("About", "About", "Soulmatch")</li>
+                            <li class="color-white">@Html.ActionLink("Contact", "Contact", "Soulmatch")</li>
                         </ul>
                     </div>
                 </div>
             </div>
-                <br /> <br /> <br />
+            <br /> <br /> <br />
 
-                <div class="container body-content">
-                    @RenderBody()
-                    <hr />
-                    <footer id="footer" style="color:white">
-                        <div class="top-footer">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-4 marb20">
-                                        <div class="ftr-tle">
-                                            <h4 class="white no-padding">SOUL MATCH</h4>
-                                        </div>
-                                        <div class="info-sec">
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
 
-                                            <p>Find your own choice</p>
-                                            <p>(Listen to you heart) </p>
-
-                                        </div>
+                <footer id="footer" style="color:white">
+                    <div class="top-footer">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 marb20">
+                                    <div class="ftr-tle">
+                                        <h4 class="white no-padding">SOUL MATCH</h4>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 marb20">
-                                        <div class="ftr-tle">
-                                            <h4 class="white no-padding">How to Reach Us</h4>
+                                    <div class="info-sec">
 
+                                        <p>Find your own choice</p>
+                                        <p>(Listen to you heart) </p>
 
-                                        </div>
-                                        <div class="info-sec">
-                                            <ul class="quick-info" style="margin-left: -35px">
-                                                <li><p>24/7 Available</p></li>
-                                                <li><p>Email: info@soulmatch.com</p></li>
-
-                                            </ul>
-                                        </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 marb20">
-                                        <div class="ftr-tle">
-                                            <h4 class="white no-padding">Follow us</h4>
-                                        </div>
-                                        <div class="info-sec">
-                                            <ul class="social-icon">
-                                                <li class="bglight-blue"><a href="" class="color-white"><i class="fa fa-facebook"></a></i></li>
-                                                <li class="bgred"><a class="color-white" href="www.google.com"><i class="fa fa-google-plus"></i></a></li>
-                                                <li class="bgdark-blue"><a href="www.linkedin.com" class="color-white"><i class="fa fa-linkedin"></i></a></li>
-                                                <li class="bglight-blue"><a href="www.twitter.com" class="color-white"><i class="fa fa-twitter"></i></a></li>
-                                            </ul>
-                                        </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 marb20">
+                                    <div class="ftr-tle">
+                                        <h4 class="white no-padding">How to Reach Us</h4>
+
+
+                                    </div>
+                                    <div class="info-sec">
+                                        <ul class="quick-info" style="margin-left: -35px">
+                                            <li><p>24/7 Available</p></li>
+                                            <li><p>Email: info@soulmatch.com</p></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 marb20">
+                                    <div class="ftr-tle">
+                                        <h4 class="white no-padding">Follow us</h4>
+                                    </div>
+                                    <div class="info-sec">
+                                        <ul class="social-icon">
+                                            <li class="bglight-blue"><a href="" class="color-white"><i class="fa fa-facebook"></a></i></li>
+                                            <li class="bgred"><a class="color-white" href="www.google.com"><i class="fa fa-google-plus"></i></a></li>
+                                            <li class="bgdark-blue"><a href="www.linkedin.com" class="color-white"><i class="fa fa-linkedin"></i></a></li>
+                                            <li class="bglight-blue"><a href="www.twitter.com" class="color-white"><i class="fa fa-twitter"></i></a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br /> <br />
+                    </div>
+                    <br /> <br />
 
-                        <div class="footer-line">
-                            <div class="">
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        Contact Info | UET,LAHORE| info@soulmatch.com | http://www.soulmatch.com
+                    <div class="footer-line">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    Contact Info | UET,LAHORE| info@soulmatch.com | http://www.soulmatch.com
 
-                                    </div>
                                 </div>
                             </div>
-                    </footer>
-                </div>
+                        </div>
+                </footer>
             </div>
-            
+        </div>
+
         </div>
 
         @Scripts.Render("~/bundles/jquery")
