@@ -1,17 +1,109 @@
-﻿
-@{
-                /**/
 
-                ViewBag.Title = "Broker Profile";
+<html xmlns="http://www.w3.org/1999/xhtml">
+@{
+    /**/
+
+    ViewBag.Title = "Broker Profile";
 }
-<h1> WelcomeBroker</h1>
-<center>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen and (max-height: 450px)" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-height: 450px)" />
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
+
+            .sidenav a {
+                padding: 6px 6px 6px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="sidenav">
+
+        <a href="http://localhost:50741/Broker/UserProfile">Broker Profile</a>
+        <a href="http://localhost:50741/Broker/requests">Registration Requests</a>
+        <a href="http://localhost:50741/Broker/ViewProgress">View Progress</a>
+        <a href="http://localhost:50741/Broker/Login">Log Out</a>
+    </div>
     <br />
     <br />
-    <br />
-    <a href="http://localhost:50741/Broker/requests">Registeration Requests</a>
-    <br />
-    <br />
-    <br /><br />
-    <a href="http://localhost:57783/Broker/ViewProgress">View Progress</a>
-</center>
+    <div class="main">
+
+        <center> <h2 class="color-white">Broker Profile</h2> </center>
+       
+      
+
+        <br />
+        <br />
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <h3 class="color-white">Registration Requests</h3>
+                <br />
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/requests">Go </a></p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="color-white">View Progress</h3>
+                <br />
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:57783/Broker/ViewProgress">Go </a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
