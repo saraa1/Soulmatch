@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,16 +9,15 @@ using System.Web;
 using System.Web.Mvc;
 using Soul.Models;
 
+
 namespace Soul.Controllers
 {
     public class BrokerController : Controller
     {
-        private DbModels db = new DbModels();
-        //*********************************************************************//
-
+        DbModels db = new DbModels();
         // GET: broker
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult login()
         {
             broker Brokermodel = new broker();
             return View(Brokermodel);
@@ -28,8 +27,10 @@ namespace Soul.Controllers
         [HttpPost]
         public ActionResult Login(broker brokermodel)
         {
+            try
+            {
 
-            using (DbModels db = new DbModels())
+                using (DbModels db = new DbModels())
             {
 
                 if (db.brokers.Any(x => x.Name == brokermodel.Name && x.Code == brokermodel.Code))
@@ -40,8 +41,20 @@ namespace Soul.Controllers
                     return RedirectToAction("Userprofile", "Broker");
                 }
                 ViewBag.LoginErrorMessage = "Wrong Name and password";
-                return View("Login", brokermodel);
+                
             }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+            return View("Login", brokermodel);
 
         }
 
@@ -76,58 +89,7 @@ namespace Soul.Controllers
             return View(result);
 
         }
-
-
-        [HttpGet]
-        public ActionResult Allow(int? id)
-        {
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            user table_2 = db.users.Find(id);
-            if (table_2 == null)
-            {
-                return HttpNotFound();
-            }
-            return View(table_2);
-        }
-
-        [HttpPost]
-
-        [ActionName("Allow")]
-        public ActionResult Allow(int id)
-        {
-
-            user table_2 = db.users.Find(id);
-
-            registered_users rguser = new registered_users
-            {
-                UserID = table_2.UserID,
-                Fullname = table_2.Fullname,
-                Image = table_2.Image,
-                Account_no = table_2.Account_no,
-                Adress = table_2.Adress,
-                Age = table_2.Age,
-                Cast = table_2.Cast,
-                City = table_2.City,
-                CNIC = table_2.CNIC,
-                Contact_no = table_2.Contact_no,
-                Email = table_2.Email,
-                Gender = table_2.Gender,
-                Password = table_2.Password,
-                Profession = table_2.Profession,
-                Religion = table_2.Religion,
-                Salary = table_2.Salary,
-                Username = table_2.Username
-            };
-
-            db.registered_users.Add(rguser);
-            db.SaveChanges();
-            return RedirectToAction("requests");
-
-        }
+        
 
         public ActionResult DetailsUser(int? id)
         {
@@ -165,7 +127,7 @@ namespace Soul.Controllers
         [HttpPost]
 
         [ActionName("DeleteUser")]
-        public ActionResult DeleteConfirmed1(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
 
             try
@@ -192,42 +154,67 @@ namespace Soul.Controllers
             }
             return RedirectToAction("requests");
         }
-        //*********************************************************************//
+        
+          [HttpGet]
+          public ActionResult Allow(int? id)
+          {
 
+              if (id == null)
+              {
+                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+              }
+              user table_2 = db.users.Find(id);
+              if (table_2 == null)
+              {
+                  return HttpNotFound();
+              }
+              return View(table_2);
+          }
 
-        // GET: Broker
-        public ActionResult Index()
-        {
-            return View(db.brokers.ToList());
-        }
+          [HttpPost]
 
-        // GET: Broker/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            broker broker = db.brokers.Find(id);
-            if (broker == null)
-            {
-                return HttpNotFound();
-            }
-            return View(broker);
-        }
+          [ActionName("Allow")]
+          public ActionResult Allow(int id)
+          {
 
-        // GET: Broker/Create
+              user table_2 = db.users.Find(id);
+
+              registered_users rguser = new registered_users
+              {
+                  UserID=table_2.UserID,
+                  Fullname=table_2.Fullname,
+                  Image=table_2.Image,
+                  Account_no=table_2.Account_no,
+                  Adress=table_2.Adress,
+                  Age=table_2.Age,
+                  Cast=table_2.Cast,
+                  City=table_2.City,
+                  CNIC=table_2.CNIC,
+                  Contact_no=table_2.Contact_no,
+                  Email=table_2.Email,
+                  Gender=table_2.Gender,
+                  Password=table_2.Password,
+                  Profession=table_2.Profession,
+                  Religion=table_2.Religion,
+                  Salary=table_2.Salary,
+                  Username=table_2.Username
+              };
+
+              db.registered_users.Add(rguser);
+            db.users.Remove(table_2);
+              db.SaveChanges();
+              return RedirectToAction("requests");
+
+      }
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Broker/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Code,Name,Email,City,CNIC,Contact_No,BrokerID")] broker broker)
+        public ActionResult Create([Bind(Include = "Id,Name,CNIC,City,Contact_No,Email,BrokerID,Code")] broker broker)
         {
             if (ModelState.IsValid)
             {
@@ -239,70 +226,5 @@ namespace Soul.Controllers
             return View(broker);
         }
 
-        // GET: Broker/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            broker broker = db.brokers.Find(id);
-            if (broker == null)
-            {
-                return HttpNotFound();
-            }
-            return View(broker);
-        }
-
-        // POST: Broker/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Code,Name,Email,City,CNIC,Contact_No,BrokerID")] broker broker)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(broker).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(broker);
-        }
-
-        // GET: Broker/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            broker broker = db.brokers.Find(id);
-            if (broker == null)
-            {
-                return HttpNotFound();
-            }
-            return View(broker);
-        }
-
-        // POST: Broker/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            broker broker = db.brokers.Find(id);
-            db.brokers.Remove(broker);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
