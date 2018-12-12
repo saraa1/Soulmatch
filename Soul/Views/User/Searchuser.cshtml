@@ -1,7 +1,10 @@
-﻿@model IEnumerable<Soul.Models.gridtable>
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+@{
+    /**/
+
+    ViewBag.Title = "Broker Profile";
+}
 <head>
     <link rel="stylesheet" type="text/css" media="screen and (max-height: 450px)" />
     <link rel="stylesheet" type="text/css" media="screen and (max-height: 450px)" />
@@ -45,75 +48,62 @@
 <body>
     <div class="sidenav">
 
-        <a href="http://localhost:50741/User/UserProfile">User Profile</a>
-        <a href="http://localhost:50741/User/Searchuser">Search Users</a>
-        <a href="http://localhost:50741/User/getnotified">Proposal Requests</a>
-        <a href="http://localhost:50741/User/Login">Log Out</a>
+        <a href="http://localhost:50741/Broker/UserProfile">Broker Profile</a>
+        <a href="http://localhost:50741/Broker/requests">Registration Requests</a>
+        <a href="http://localhost:50741/Broker/ViewProgress">View Progress</a>
+        <a href="http://localhost:50741/Broker/Login">Log Out</a>
     </div>
-
-
+    <br />
+    <br />
     <div class="main">
 
-        @using GridMvc.Html
+        <center> <h2 class="color-white">Broker Profile</h2> </center>
+       
+      
 
-        @{
-            /**/
+        <br />
+        <br />
 
-            /**/
+        <div class="row">
 
-            ViewBag.Title = "Searchuser";
-        }
-        <center>
-            <h2>Search Users</h2>
-        </center>
-        <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
-        <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
-        <script src="@Url.Content("~/scripts/jquery-1.10.2.min.js")"></script>
-        <script src="@Url.Content("~/scripts/gridmvc.min.js")"></script>
-        @using (Html.BeginForm("Searchuser", "User", FormMethod.Get))
-        {
-            <div class="container">
-                <b>Search By:</b>
-                <select id="Search By">
-
-                    <option value="Cast">Cast </option>
-                    <option value="Religion">Religion</option>
-                    <option value="Profession">Profession</option>
-                </select><br /><br />
-
-                @Html.TextBox("searching")
-                <input type="submit" value="submit" />
-
+            <div class="col-md-4">
+                <h3 class="color-white">Registration Requests</h3>
+                <br />
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:50741/Broker/requests">Go </a></p>
             </div>
-            <br /><br />
-
-            <div class="code-cut">
-                @Html.Grid(Model).Columns(Columns =>
-           {
-               Columns.Add(s => s.Fullname).Titled("Fullname");
-               Columns.Add(s => s.Email).Titled("Email");
-               Columns.Add(s => s.Age).Titled("Age");
-               Columns.Add(s => s.Religion).Titled("Religion");
-               Columns.Add(s => s.Cast).Titled("Cast");
-               Columns.Add(s => s.Profession).Titled("Profession");
-               Columns.Add(s => s.City).Titled("City");
-               Columns.Add()
-               .Encoded(false)
-               .Sanitized(false)
-               .SetWidth(50)
-               .RenderValueAs(o => (Html.ActionLink(" SendRequest", "SendRequest", "User", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString()) + Html.ActionLink("ViewDetails", "ViewDetails", new { id = o.UserID }, new { @class = "btn btn-default" }).ToHtmlString());
-
-
-
-
-
-           }).WithPaging(10).Sortable(true)
-
-
-
+            <div class="col-md-4">
+                <h3 class="color-white">View Progress</h3>
+                <br />
+                <p><a class="btn btn-primary btn-lg" href="http://localhost:57783/Broker/ViewProgress">Go </a></p>
             </div>
-
-        }
+        </div>
     </div>
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
